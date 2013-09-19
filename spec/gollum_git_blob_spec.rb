@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Gollum::Git::Blob do
   before(:each) do
     @repo = Gollum::Git::Repo.new(fixture('dot_bare_git'), :is_bare => true)
-    @blob = @repo.head.commit.tree.blobs.first
+    @blob = @repo.commits[0].tree.blobs.first
   end
 
   it "should have a create method that returns a Gollum::Git::Blob" do
