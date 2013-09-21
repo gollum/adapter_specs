@@ -14,7 +14,7 @@ describe Gollum::Git::Index do
   end
 
   it "should return a hashmap for Index#tree" do
-    @index.tree.should be_a Hash
+    @index.tree.should be_a Gollum::Git::Tree
   end
 
   it "should have a read_tree method" do
@@ -23,12 +23,12 @@ describe Gollum::Git::Index do
 
   it "should load the current tree with Index#read_tree" do
     @index.current_tree.should be_nil 
-    @index.read_tree(@repo.head.commit.tree)
+    @index.read_tree(@repo.head.commit.id)
     @index.current_tree.should_not be_nil
   end
 
   it "should return a Gollum::Git::Tree for Index#current_tree" do
-    @index.read_tree(@repo.head.commit.tree)
+    @index.read_tree(@repo.head.commit.id)
     @index.current_tree.should be_a Gollum::Git::Tree
   end
 
