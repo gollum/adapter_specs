@@ -14,7 +14,7 @@ describe Gollum::Git::Index do
   end
 
   it "should return a hashmap for Index#tree" do
-    @index.tree.should be_a Gollum::Git::Tree
+    @index.tree.should be_a Hash
   end
 
   it "should have a read_tree method" do
