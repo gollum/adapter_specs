@@ -8,7 +8,9 @@ describe Gollum::Git::Blob do
 
   it "should have a create method that returns a Gollum::Git::Blob" do
     Gollum::Git::Blob.should respond_to(:create).with(2).arguments
-    Gollum::Git::Blob.create(@repo, {}).should be_a Gollum::Git::Blob
+    test_blob = @repo.head.tree.blobs.first.id
+    test_options = {:id => test_blob.id, :size => test_blob.size, :mode => test_blob.mode, :path => test_blob.path }
+    Gollum::Git::Blob.create(@repo, test_options).should be_a Gollum::Git::Blob
   end
   
   it "should have a data method" do

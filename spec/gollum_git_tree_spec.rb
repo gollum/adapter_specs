@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Gollum::Git::Tree do
   before(:each) do
     @repo = Gollum::Git::Repo.new(fixture('dot_bare_git'), :is_bare => true)
-    @repo.index.read_tree(@repo.head.commit.id)
+    @repo.index.read_tree(@repo.head.tree.id)
     @tree = @repo.index.current_tree
   end
 
