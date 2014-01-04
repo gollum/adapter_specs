@@ -26,6 +26,5 @@ describe Gollum::Git::Commit do
   
   it "should have a list_from_string method" do
     Gollum::Git::Commit.should respond_to(:list_from_string).with(2).arguments
-    pending "Implementation is broken."
   end
 end
