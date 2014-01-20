@@ -43,6 +43,10 @@ describe Gollum::Git::Git do
       @git.should respond_to(:refs).with(2).arguments
     end
 
+    it "should have a log method" do
+      @git.should respond_to(:log).with(1).arguments
+    end
+
   end
 
 end

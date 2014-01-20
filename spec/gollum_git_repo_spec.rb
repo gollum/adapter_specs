@@ -23,4 +23,8 @@ describe Gollum::Git::Repo do
     @repo.head.should be_a Gollum::Git::Ref
   end
 
+  it "should have a diff method" do
+    @repo.should respond_to(:diff).with(3).arguments
+  end
+
 end
