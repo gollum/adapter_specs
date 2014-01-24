@@ -24,7 +24,7 @@ describe Gollum::Git::Repo do
   end
 
   it "should have a log method" do
-    @git.should respond_to(:log).with(3).arguments
+    @repo.should respond_to(:log).with(3).arguments
   end
 
 end

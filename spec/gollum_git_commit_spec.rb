@@ -24,7 +24,4 @@ describe Gollum::Git::Commit do
     @commit.tree.should be_a Gollum::Git::Tree
   end
   
-  it "should have a list_from_string method" do
-    Gollum::Git::Commit.should respond_to(:list_from_string).with(2).arguments
-  end
 end

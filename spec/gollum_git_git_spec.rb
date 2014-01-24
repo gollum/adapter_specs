@@ -16,7 +16,13 @@ describe Gollum::Git::Git do
 
   it "should have an rm method" do
     @git.should respond_to(:rm)
-  end  
+  end
+
+  context "Gollum specific methods" do
+    it "should have a versions_for_path method" do
+        @git.should respond_to(:versions_for_path).with(3).arguments
+    end
+  end
 
   context "porcelain API" do
     it "should have a rev_list method" do
@@ -48,7 +54,7 @@ describe Gollum::Git::Git do
     end
 
     it "should have a diff method" do
-      @repo.should respond_to(:diff).with(3).arguments
+      @git.should respond_to(:diff).with(3).arguments
     end
 
   end
