@@ -53,10 +53,6 @@ describe Gollum::Git::Git do
       @git.should respond_to(:log).with(3).arguments
     end
 
-    it "should have a diff method" do
-      @git.should respond_to(:diff).with(3).arguments
-    end
-
   end
 
 end
