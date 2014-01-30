@@ -11,7 +11,7 @@ describe Gollum::Git::Git do
   end
   
   it "should have a grep method" do
-    @git.should respond_to(:grep)
+    @git.should respond_to(:grep).with(2).arguments
   end
 
   it "should have an rm method" do
