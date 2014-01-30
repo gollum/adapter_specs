@@ -6,6 +6,10 @@ describe Gollum::Git::Repo do
     @repo = Gollum::Git::Repo.new(fixture('dot_bare_git'), :is_bare => true)
   end
   
+  it "should have a Gollum::Git::Repo::init_bare method" do
+    Gollum::Git::Repo.should respond_to(:init_bare)
+  end
+  
   it "should have a path method" do
     @repo.should respond_to(:path)
   end
