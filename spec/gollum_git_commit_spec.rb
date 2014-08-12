@@ -6,9 +6,10 @@ describe Gollum::Git::Commit do
     @commit = @repo.commits.first
   end
 
-  it "should have an id, an author and a message" do
+  it "should have an id, author, authored date, and a message" do
     @commit.should respond_to(:id)
     @commit.should respond_to(:author)
+    @commit.should respond_to(:authored_date)
     @commit.should respond_to(:message)
   end
 
