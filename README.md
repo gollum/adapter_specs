@@ -1,6 +1,3 @@
-gollum_git_adapter_specs
-========================
-
 The spec suite for Gollum Git adapters.
 
 To test your adapter against these specs, add the following to spec/spec_helper.rb:
