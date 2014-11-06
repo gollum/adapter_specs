@@ -21,6 +21,10 @@ describe Gollum::Git::Commit do
     @commit.to_s.should == @commit.id
   end
 
+  it "should have stats" do
+    @commit.stats.files.first.should ==  ["PURE_TODO", 32, 0, 32]
+  end
+
   it "should return a single Gollum::Git::Tree object for Commit#tree" do
     @commit.tree.should be_a Gollum::Git::Tree
   end
