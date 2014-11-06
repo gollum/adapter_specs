@@ -27,8 +27,9 @@ describe Gollum::Git::Repo do
     @repo.head.should be_a Gollum::Git::Ref
   end
 
-  it "should have a log method" do
+  it "should log returning an array of Gollum::Git::Commit" do
     @repo.should respond_to(:log).with(3).arguments
+    @repo.log.first.should be_a Gollum::Git::Commit
   end
 
   it "should have a diff method" do
