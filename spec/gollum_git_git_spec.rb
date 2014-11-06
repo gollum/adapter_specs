@@ -38,19 +38,11 @@ describe Gollum::Git::Git do
     end
   
     it "should have an apply_path method" do
-      (1..3).each{|i| @git.should respond_to(:apply_patch).with(i).arguments}
+      (1..2).each{|i| @git.should respond_to(:apply_patch).with(i).arguments}
     end
   
     it "should have a cat_file method" do
       @git.should respond_to(:cat_file).with(2).arguments
-    end
-  
-    it "should have a refs method" do
-      @git.should respond_to(:refs).with(2).arguments
-    end
-
-    it "should have a log method" do
-      @git.should respond_to(:log).with(3).arguments
     end
 
   end
