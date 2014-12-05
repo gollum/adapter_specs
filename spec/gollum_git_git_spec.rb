@@ -25,9 +25,6 @@ describe Gollum::Git::Git do
   end
 
   context "porcelain API" do
-    it "should have a rev_list method" do
-      @git.should respond_to(:rev_list).with(2).arguments
-    end
 
     it "should have the ls_files method" do
       @git.should respond_to(:ls_files).with(2).arguments
