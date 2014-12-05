@@ -22,7 +22,7 @@ describe Gollum::Git::Commit do
   end
 
   it "should have stats" do
-    @commit.stats.files.first.should ==  ["PURE_TODO", 32, 0, 32]
+    @commit.stats.files.should include(["PURE_TODO", 32, 0, 32])
   end
 
   it "should return a single Gollum::Git::Tree object for Commit#tree" do
