@@ -9,6 +9,14 @@ describe Gollum::Git::Git do
   it "should have an exist? method" do
     @git.should respond_to(:exist?)
   end
+
+  it "should have a push method" do
+    (2..3).each{|i| @git.should respond_to(:push).with(i).arguments}
+  end
+
+  it "should have a pull method" do
+    (2..3).each{|i| @git.should respond_to(:pull).with(i).arguments}
+  end
   
   it "should have a grep method" do
     @git.should respond_to(:grep).with(2).arguments
