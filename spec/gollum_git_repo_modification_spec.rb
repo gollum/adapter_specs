@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'rspec/expectations'
+require 'tmpdir'
 
 RSpec::Matchers.define :a_blob_named do |expected|
   match do |actual|
@@ -9,13 +10,27 @@ end
 
 describe Gollum::Git::Repo do
 
+  def testrepo
+    tmp = Dir.mktmpdir
+    FileUtils.cp_r(File.join(fixture('dot_bare_git'), '.'), tmp)
+    tmp
+  end
+
+  before(:all) do
+    @tmp = testrepo
+  end
+
+  after(:all) do
+    FileUtils.remove_entry(@tmp)
+  end
+
   after(:each) do
     if parent_commit != repo.head.commit
       repo.update_ref(repo.head.name, parent_commit.id)
     end
   end
 
-  let(:repo) { Gollum::Git::Repo.new(fixture('dot_bare_git'), :is_bare => true) }
+  let(:repo) { Gollum::Git::Repo.new(@tmp, :is_bare => true) }
 
   let(:index) do
     repo.index.read_tree(repo.head.commit.tree.id)
