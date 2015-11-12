@@ -2,38 +2,36 @@ require 'spec_helper'
 
 describe Gollum::Git::Repo do
 
-  before(:each) do
-    @repo = Gollum::Git::Repo.new(fixture('dot_bare_git'), :is_bare => true)
-  end
-  
+  subject(:repo) { Gollum::Git::Repo.new(fixture('dot_bare_git'), :is_bare => true) }
+
   it "should have a Gollum::Git::Repo::init_bare method" do
-    Gollum::Git::Repo.should respond_to(:init_bare)
+    expect(Gollum::Git::Repo).to respond_to(:init_bare)
   end
   
   it "should have a path method" do
-    @repo.should respond_to(:path)
+    expect(repo).to respond_to(:path)
   end
 
   it "should return a Gollum::Git::Git object for Repo#git" do
-    @repo.git.should be_a Gollum::Git::Git
+    expect(repo.git).to be_a Gollum::Git::Git
   end
 
   it "should return an array of Gollum::Git::Commit objects for Repo#commits" do
-    @repo.commits.should be_a Array
-    @repo.commits.each{|commit| commit.should be_a Gollum::Git::Commit}
+    expect(repo.commits).to be_a Array
+    repo.commits.each{|commit| expect(commit).to be_a Gollum::Git::Commit}
   end
 
   it "should return a Gollum::Git::Ref object for Repo#head" do
-    @repo.head.should be_a Gollum::Git::Ref
+    expect(repo.head).to be_a Gollum::Git::Ref
   end
 
   it "should log returning an array of Gollum::Git::Commit" do
-    @repo.should respond_to(:log).with(3).arguments
-    @repo.log.first.should be_a Gollum::Git::Commit
+    expect(repo).to respond_to(:log).with(3).arguments
+    expect(repo.log.first).to be_a Gollum::Git::Commit
   end
 
   it "should have a diff method" do
-    (2..3).each{|i| @repo.should respond_to(:diff).with(i).arguments}
+    (2..3).each{|i| expect(repo).to respond_to(:diff).with(i).arguments}
   end
 
 end
