@@ -8,13 +8,13 @@ RSpec::Matchers.define :a_blob_named do |expected|
   end
 end
 
-describe Gollum::Git::Repo do
+def testrepo
+  tmp = Dir.mktmpdir
+  FileUtils.cp_r(File.join(fixture('dot_bare_git'), '.'), tmp)
+  tmp
+end
 
-  def testrepo
-    tmp = Dir.mktmpdir
-    FileUtils.cp_r(File.join(fixture('dot_bare_git'), '.'), tmp)
-    tmp
-  end
+describe Gollum::Git::Repo do
 
   before(:all) do
     @tmp = testrepo
