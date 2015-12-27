@@ -30,7 +30,7 @@ describe Gollum::Git::Repo do
     end
   end
 
-  let(:repo) { Gollum::Git::Repo.new(@tmp, :is_bare => true) }
+  let(:repo) { Gollum::Git::Repo.new(@tmp, is_bare: true) }
 
   let(:index) do
     repo.index.read_tree(repo.head.commit.tree.id)
@@ -152,7 +152,7 @@ describe Gollum::Git::Repo do
       end
     end
 
-    context "after deleting a file", :skip => true do
+    context "after deleting a file", skip: true do
 
       let(:filename) { 'History.txt' }
 
