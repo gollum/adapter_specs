@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = %q{Gollum Git adapter specs.}
   s.license	= 'MIT'
 
-  s.add_development_dependency "rspec", "2.13.0"
+  s.add_development_dependency "rspec", "3.4.0"
 
   s.files         = Dir['spec/**/*.rb'] + ["README.md", "Gemfile"]
   s.require_paths = ["spec"]
