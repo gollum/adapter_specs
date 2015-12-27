@@ -42,8 +42,8 @@ describe Gollum::Git::Git do
       expect(git).to respond_to(:checkout).with(3).arguments
     end
 
-    it "has an apply_path method" do
-      (1..2).each{|i| expect(git).to respond_to(:apply_patch).with(i).arguments}
+    it "has a revert method" do
+      expect(git).to respond_to(:revert).with(4).arguments
     end
 
     it "has a cat_file method" do
