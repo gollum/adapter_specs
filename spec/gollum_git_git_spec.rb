@@ -20,6 +20,8 @@ describe Gollum::Git::Git do
   
   it "has a grep method" do
     expect(git).to respond_to(:grep).with(2).arguments
+    expect(git.grep("major")).to eq [{:name=>"History.txt", :count=>1}, {:name=>"test/fixtures/cat_file_blob_ruby", :count=>1}, {:name=>"test/fixtures/diff_i", :count=>1}, {:name=>"test/test_commit.rb", :count=>1}]
+    expect(git.grep("你")).to eq [{:name=>"Döner.md", :count=>1}]
   end
 
   it "has an rm method" do

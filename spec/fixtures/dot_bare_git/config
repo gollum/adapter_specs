@@ -1,7 +1,7 @@
 [core]
 	repositoryformatversion = 0
 	filemode = true
-	bare = false
+	bare = true
 	logallrefupdates = true
 [remote "origin"]
 	url = git@github.com:schacon/grit.git
