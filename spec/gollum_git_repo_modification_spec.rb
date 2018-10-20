@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'rspec/expectations'
 require 'tmpdir'
+require 'digest'
 
 RSpec::Matchers.define :a_blob_named do |expected|
   match do |actual|

@@ -22,7 +22,7 @@ describe Gollum::Git::Commit do
   end
 
   it "has stats" do
-    expect(commit.stats.files).to include(["PURE_TODO", 32, 0, 32])
+    expect(commit.stats.files).to include(["new.md", 1, 0, 1])
   end
 
   it "returns a single Gollum::Git::Tree object for Commit#tree" do
