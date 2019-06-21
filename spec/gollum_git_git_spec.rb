@@ -44,8 +44,9 @@ describe Gollum::Git::Git do
       expect(git).to respond_to(:checkout).with(3).arguments
     end
 
-    it "has a revert method" do
-      expect(git).to respond_to(:revert).with(3).arguments
+    it "has revert methods" do
+      expect(git).to respond_to(:revert_path).with(3).arguments
+      expect(git).to respond_to(:revert_commit).with(2).arguments
     end
 
     it "has a cat_file method" do
