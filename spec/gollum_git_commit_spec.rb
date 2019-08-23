@@ -22,7 +22,14 @@ describe Gollum::Git::Commit do
   end
 
   it "has stats" do
-    expect(commit.stats.files).to include(["new.md", 1, 0, 1])
+    stats = commit.stats.files[0]
+    expect(stats[:old_file]).to eq 'old.txt' # This commit contains a rename
+    stats = repo.commits[2].stats.files[0]
+    expect(stats[:new_additions]).to eq 0
+    expect(stats[:new_deletions]).to eq 1
+    expect(stats[:changes]).to eq 1
+    expect(stats[:new_file]).to eq 'new.md'
+    expect(stats[:old_file]).to eq nil
   end
 
   it "returns a single Gollum::Git::Tree object for Commit#tree" do
