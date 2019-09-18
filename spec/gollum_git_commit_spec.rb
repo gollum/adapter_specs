@@ -22,13 +22,15 @@ describe Gollum::Git::Commit do
   end
 
   it "has stats" do
-    stats = commit.stats.files[0]
-    expect(stats[:old_file]).to eq 'old.txt' # This commit contains a rename
-    stats = repo.commits[2].stats.files[0]
+    stats = commit.stats.files[0] # This commit contains a rename
+    expect(stats[:old_file]).to eq 'old.txt'
+    stats = repo.commits[2].stats.files[0] # New file
     expect(stats[:new_additions]).to eq 1
     expect(stats[:new_deletions]).to eq 0
     expect(stats[:changes]).to eq 1
     expect(stats[:new_file]).to eq 'new.md'
+    expect(stats[:old_file]).to eq nil
+    stats = repo.commits[7].stats.files[0] # Normal file update
     expect(stats[:old_file]).to eq nil
   end
 
