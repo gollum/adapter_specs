@@ -20,8 +20,18 @@ describe Gollum::Git::Git do
   
   it "has a grep method" do
     expect(git).to respond_to(:grep).with(2).arguments
-    expect(git.grep("major")).to eq [{:name=>"History.txt", :count=>1}, {:name=>"test/fixtures/cat_file_blob_ruby", :count=>1}, {:name=>"test/fixtures/diff_i", :count=>1}, {:name=>"test/test_commit.rb", :count=>1}]
-    expect(git.grep("你")).to eq [{:name=>"Döner.md", :count=>1}]
+    looped = 0
+    binary_files = ['img/eye.jpg', 'test/fixtures/for_each_ref', 'test/fixtures/for_each_ref_tags']
+    git.grep('major') do |name, data|
+      expect(name).to be_a String
+      unless binary_files.include?(name)
+        expect(data).to be_a String
+      else
+        expect(data).to be_nil
+      end
+      looped += 1
+    end
+    expect(looped).to eq 70
   end
 
   it "has an rm method" do
