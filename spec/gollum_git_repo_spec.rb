@@ -7,7 +7,7 @@ describe Gollum::Git::Repo do
   it "has a Gollum::Git::Repo::init_bare method" do
     expect(Gollum::Git::Repo).to respond_to(:init_bare)
   end
-  
+
   it "has a path method" do
     expect(repo).to respond_to(:path)
   end
@@ -28,6 +28,13 @@ describe Gollum::Git::Repo do
   it "returns an array of Gollum::Git::Commit objects for log" do
     expect(repo).to respond_to(:log).with(3).arguments
     expect(repo.log.first).to be_a Gollum::Git::Commit
+  end
+
+  it "tracks pathnames for log" do
+    expect(repo).to respond_to(:log).with(3).arguments
+    result = repo.log('refs/heads/master', 'History.txt', {:follow => true}).first
+    expect(result).to be_a Gollum::Git::Commit
+    expect(result.tracked_pathname).to eq 'History.txt'
   end
 
   it "has a diff method" do
