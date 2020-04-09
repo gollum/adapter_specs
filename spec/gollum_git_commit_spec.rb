@@ -39,7 +39,8 @@ describe Gollum::Git::Commit do
     expect(commit.tree).to be_a Gollum::Git::Tree
   end
 
-  it "returns a Gollum::Git::Commit object for parent" do
+  it "returns a Gollum::Git::Commit object or nil for parent" do
     expect(commit.parent).to be_a Gollum::Git::Commit
+    expect(repo.commits.first.parent).to eq nil
   end
 end
