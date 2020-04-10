@@ -41,6 +41,6 @@ describe Gollum::Git::Commit do
 
   it "returns a Gollum::Git::Commit object or nil for parent" do
     expect(commit.parent).to be_a Gollum::Git::Commit
-    expect(repo.commits.first.parent).to eq nil
+    expect(repo.commits.last.parent).to eq nil
   end
 end
