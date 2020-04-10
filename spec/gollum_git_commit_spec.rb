@@ -6,11 +6,12 @@ describe Gollum::Git::Commit do
 
   subject(:commit) { repo.commits.first }
 
-  it "has an id, author, authored date, and a message" do
+  it "has an id, author, authored date, message, and parent" do
     expect(commit).to respond_to(:id)
     expect(commit).to respond_to(:author)
     expect(commit).to respond_to(:authored_date)
     expect(commit).to respond_to(:message)
+    expect(commit).to respond_to(:parent)
   end
 
   it "returns a Gollum::Git::Actor object for author" do
@@ -38,4 +39,8 @@ describe Gollum::Git::Commit do
     expect(commit.tree).to be_a Gollum::Git::Tree
   end
 
+  it "returns a Gollum::Git::Commit object or nil for parent" do
+    expect(commit.parent).to be_a Gollum::Git::Commit
+    expect(repo.commits.first.parent).to eq nil
+  end
 end
