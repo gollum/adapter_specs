@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+def get_last_commit(commit)
+  commit.parent ? get_last_commit(commit.parent) : commit
+end
+
 describe Gollum::Git::Commit do
 
   let(:repo) { Gollum::Git::Repo.new(fixture('dot_bare_git'), is_bare: true) }
@@ -40,8 +44,8 @@ describe Gollum::Git::Commit do
   end
 
   it "returns a Gollum::Git::Commit object or nil for parent" do
-    expect(repo.commits.size).to be < 10 # to ensure commits.last is the root
     expect(commit.parent).to be_a Gollum::Git::Commit
-    expect(repo.commits.last.parent).to eq nil
+    last_commit = get_last_commit(commit)
+    expect(last_commit.parent).to eq nil
   end
 end
