@@ -40,5 +40,10 @@ describe Gollum::Git::Repo do
   it "has a diff method" do
     (2..3).each{|i| expect(repo).to respond_to(:diff).with(i).arguments}
   end
-
+  
+  it "has a diff method" do
+    (2..3).each{|i| expect(repo).to respond_to(:diff).with(i).arguments}
+    patch = repo.diff(repo.commits[0].id, repo.commits[1].id)
+    expect(patch.encoding.to_s).to eq 'UTF-8'
+  end
 end
