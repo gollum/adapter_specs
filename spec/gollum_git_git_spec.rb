@@ -33,6 +33,15 @@ describe Gollum::Git::Git do
     end
     expect(looped).to eq 70
   end
+  
+  it "greps inside nested directories" do
+    looped = 0
+    git.grep('major', {:path=>'test/fixtures'}) do |name, data|
+      expect(name).to be_a String
+      looped += 1
+    end
+    expect(looped).to_not be 0
+  end
 
   it "has an rm method" do
     expect(git).to respond_to(:rm)
