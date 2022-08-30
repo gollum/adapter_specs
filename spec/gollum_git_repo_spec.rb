@@ -46,4 +46,11 @@ describe Gollum::Git::Repo do
     patch = repo.diff(repo.commits[0].id, repo.commits[1].id)
     expect(patch.encoding.to_s).to eq 'UTF-8'
   end
+
+  it "finds a branch from a list of branch names" do
+    expect(repo).to respond_to(:find_branch).with(1).arguments
+    expect(repo.find_branch(['master'])).to eq 'master'
+    expect(repo.find_branch(['testing', 'master'])).to eq 'testing'
+    expect(repo.find_branch(['foo'])).to be_nil
+  end
 end
