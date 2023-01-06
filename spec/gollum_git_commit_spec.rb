@@ -48,4 +48,14 @@ describe Gollum::Git::Commit do
     last_commit = get_last_commit(commit)
     expect(last_commit.parent).to eq nil
   end
+
+  it "reads notes" do
+    expect(commit.note).to eq "Notes test\n"
+    expect(repo.commits.last.note).to be_nil
+  end
+
+  it "sets notes" do
+    msg = "Notes test\n"
+    expect(commit.note = msg).to eq msg
+  end
 end
