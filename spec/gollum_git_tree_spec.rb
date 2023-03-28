@@ -6,9 +6,20 @@ describe Gollum::Git::Tree do
 
   subject(:tree) { repo.head.commit.tree }
 
+  it "finds a blob by name" do
+    result = tree.find_blob('Döner.md')
+    expect(result).to be_a Gollum::Git::Blob
+    expect(result.mode).to eq 0100644
+    result = tree.find_blob('Noexist.foo')
+    expect(result).to be_nil
+  end
+
   it "returns an array of Gollum::Git::Blob objects for Tree#blobs" do
     expect(tree.blobs).to be_a Array
-    tree.blobs.each{|blob| expect(blob).to be_a Gollum::Git::Blob}
+    tree.blobs.each do |blob|
+      expect(blob).to be_a Gollum::Git::Blob
+      expect(blob.mode).to eq 0100644
+    end
   end
 
 end
