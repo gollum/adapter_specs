@@ -53,4 +53,29 @@ describe Gollum::Git::Repo do
     expect(repo.find_branch(['testing', 'master'])).to eq 'testing'
     expect(repo.find_branch(['foo'])).to be_nil
   end
+
+  it "lists specific trees in the repo" do
+    results = repo.lstree(repo.head.commit.id, 'lib', recursive: false)
+    expect(results).to be_a Array
+    expect(results.length).to eq 2
+    expect((results.find {|x| x[:name] == 'grit.rb' })[:type]).to eq 'blob'
+    expect((results.find {|x| x[:name] == 'grit' })[:type]).to eq 'tree'
+  end
+
+  it "lists specific trees in the repo recursively" do
+    results = repo.lstree(repo.head.commit.id, 'lib', recursive: true)
+    expect(results).to be_a Array
+    expect(results.length).to eq 23
+    expect((results.find {|x| x[:name] == 'grit.rb' })[:type]).to eq 'blob'
+    expect((results.find {|x| x[:name] == 'grit' })[:type]).to eq 'tree'
+    expect((results.find {|x| x[:name] == 'commit.rb' })[:type]).to eq 'blob'
+  end
+
+  it "lists the root tree in the repo recursively by default" do
+    results = repo.lstree(repo.head.commit.id, '/')
+    expect(results).to be_a Array
+    expect(results.length).to eq 77
+    expect((results.find {|x| x[:name] == 'img' })[:type]).to eq 'tree'
+    expect((results.find {|x| x[:name] == 'Döner.md' })[:type]).to eq 'blob'
+  end
 end
